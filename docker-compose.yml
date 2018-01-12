@@ -2,13 +2,9 @@ version: '2'
 
 services:
   redis:
-    build:
-      context: https://github.com/xiaoyawl/docker-redis.git
-    container_name: redis
-    command: ["redis-server", "/etc/redis.conf"]
     restart: always
     privileged: true
-    image: benyoo/redis:3.2.5
+    image: wiggins/redis:4.0.6
     environment:
     - TERM=linux
     volumes:
