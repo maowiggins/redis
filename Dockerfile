@@ -1,5 +1,5 @@
-FROM benyoo/alpine:3.4.20160812
-MAINTAINER from www.dwhd.org by lookback (mondeolove@gmail.com)
+FROM wiggins/alpine:3.5
+MAINTAINER from wiggins
 
 ENV VERSION=3.2.5
 ENV DOWN_URL=http://download.redis.io/releases/redis-${VERSION}.tar.gz \
