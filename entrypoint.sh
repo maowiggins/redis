@@ -1,11 +1,4 @@
 #!/bin/bash
-#########################################################################
-# File Name: entrypoint.sh
-# Author: LookBack
-# Email: admin#dwhd.org
-# Version:
-# Created Time: 2016年06月30日 星期四 19时38分40秒
-#########################################################################
 
 set -e
 
@@ -14,8 +7,9 @@ if [ "$(id -u)" = '0' ] && [[ $(sysctl -w net.core.somaxconn=8192) ]]; then
 	sysctl -w vm.overcommit_memory=1
 	echo never|tee /sys/kernel/mm/transparent_hugepage/{defrag,enabled}
 fi
-
+#默认配置文件参数判断
 DEFAULT_CONF=${DEFAULT_CONF:-enable}
+#redis默认密码生成
 REDIS_PASS=${REDIS_PASS:-$(date +"%s%N"| sha256sum | base64 | head -c 16)}
 
 # first arg is `-f` or `--some-option`
@@ -44,6 +38,7 @@ if [ "$1" = 'redis-server' ]; then
 			# if a config file is supplied and explicitly specifies "protected-mode", let it win
 			doProtectedMode=
 		fi
+# redis默认配置文件判断
 		if [[ ! ${DEFAULT_CONF} =~ ^[dD][iI][sS][aA][bB][lL][eE]$ ]]; then
 			[[ -z $(grep '^requirepass' "$configFile") ]] && echo "requirepass ${REDIS_PASS}" >> $configFile
 			echo -e "\033[45;37;1mRedis Server Auth Password : $(awk '/^requirepass/{print $NF}' $configFile)\033[39;49;0m"
