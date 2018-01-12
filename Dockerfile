@@ -1,7 +1,7 @@
 FROM wiggins/alpine:latest
 MAINTAINER from wiggins
 
-ENV VERSION=3.2.5
+ENV VERSION=4.0.6
 ENV DOWN_URL=http://download.redis.io/releases/redis-${VERSION}.tar.gz \
 	TEMP_DIR=/tmp/redis \
 	DATA_DIR=/data/redis
