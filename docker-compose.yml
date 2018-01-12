@@ -2,14 +2,14 @@ version: '2'
 
 services:
   redis:
-    build:
-      context: https://github.com/xiaoyawl/docker-redis.git
-    container_name: redis
-    command: ["redis-server", "/etc/redis.conf"]
+    container_name: redis_server
     restart: always
     privileged: true
-    image: benyoo/redis:3.2.5
+    network_mode: host
+    image: wiggins/redis:latest
     environment:
+    #启用自定义配置文件
+    #- DEFAULT_CONF=disable
     - TERM=linux
     volumes:
     - /etc/localtime:/etc/localtime:ro
