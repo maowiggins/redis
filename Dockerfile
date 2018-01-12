@@ -1,4 +1,4 @@
-FROM wiggins/alpine:3.5
+FROM wiggins/alpine:latest
 MAINTAINER from wiggins
 
 ENV VERSION=3.2.5
